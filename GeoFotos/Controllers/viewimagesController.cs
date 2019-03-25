@@ -19,7 +19,7 @@ namespace GeoFotos.Controllers
             {
                 if (!key.Equals("") & !uri.Equals(""))
                 {
-                    _imageTotal.ImageData = _consultBackupBussiness.GetListImageByKeyUri(key, uri);
+                    _imageTotal = _consultBackupBussiness.GetListImageByKeyUri(key, uri);
                     
                     
                     return View(_imageTotal);
