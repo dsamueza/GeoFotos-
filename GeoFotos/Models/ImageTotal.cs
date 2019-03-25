@@ -15,9 +15,9 @@ namespace GeoFotos.Models
         public string TipoNegocio { get; set; }
         public string NombreLocal { get; set; }
         public string Dirección { get; set; }
-        public DateTime Fecha { get; set; }
-        public decimal GeoLa { get; set; }
-        public decimal GeoLo { get; set; }
+        public DateTime? Fecha { get; set; }
+        public double? GeoLa { get; set; }
+        public double? GeoLo { get; set; }
 
         public IList<ImageData> ImageData { get; set; }
     }

@@ -8,42 +8,7 @@
 
 }
 
-@*<div>
-        @if (Model != null)
-        {
-
-            <div class="section-title">
-                <span>Nombre del Proyecto: <small> @Model.NombreLocal </small></span>
-                <span>Codigo: <small> @Model.Code </small></span>
-
-            </div>
-
-
-        }
-
-    </div>*@
-
-@*<div class="mega-container" style="overflow-y: scroll; max-height:500px">
-
-        <div class="site-main">
-            @if (Model != null)
-            {
-                <div id="imgId">
-                    <div class="pictures">
-                        <div class="wrap-image">
-                            @foreach (var image in Model.ImageData)
-                            {
-
-                                <img src="@image.link " alt="..." class="margin" width="300px" height="150px" style="border: solid #e2dcdc">
-
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>*@
-
+<link href="~/Content/ViewImagesData/viewer.css" rel="stylesheet"/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
@@ -64,9 +29,7 @@
                                 <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-codepen"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Código de identificación
-                                </a>
+                                <label>Código de identificación</label>
                                 <span class="product-description">
                                     @Model.Code
                                 </span>
@@ -74,12 +37,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-tasks"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-th"></i></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Proyecto relacionado
-                                </a>
+                                <label>Proyecto relacionado</label>
                                 <span class="product-description">
                                     @Model.CORE
                                 </span>
@@ -87,12 +48,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-road"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Ruta asignada
-                                </a>
+                                <label>Ruta asignada</label>
                                 <span class="product-description">
                                     @Model.Ruta
                                 </span>
@@ -100,12 +59,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-list-alt"></i></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Observación ruta
-                                </a>
+                                <label>Observación ruta</label>
                                 <span class="product-description">
                                     @Model.Rutaexiste
                                 </span>
@@ -113,12 +70,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-shopping-cart"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Canal
-                                </a>
+                                <label>Canal</label>
                                 <span class="product-description">
                                     @Model.TipoNegocio
                                 </span>
@@ -126,12 +81,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-shopping-basket"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Nombre comercial
-                                </a>
+                                <label>Nombre comercial</label>
                                 <span class="product-description">
                                     @Model.NombreLocal
                                 </span>
@@ -139,12 +92,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-address-book"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Dirección
-                                </a>
+                                <label>Dirección</label>
                                 <span class="product-description">
                                     @Model.Dirección
                                 </span>
@@ -152,12 +103,10 @@
                         </li>
                         <li class="item">
                             <div class="product-img">
-                                <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-shield"></i></div>
+                                <div class="col-md-3 col-sm-4"><i class="fa fa-address-book"></i></div>
                             </div>
                             <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">
-                                    Fecha
-                                </a>
+                                <label>Fecha</label>
                                 <span class="product-description">
                                     @Model.Fecha
                                 </span>
@@ -170,120 +119,30 @@
         <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Elementos</h3>
+                    <h3 class="box-title">Multimedia</h3>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
-                        </ol>
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="fa fa-angle-left"></span>
-                        </a>
-                        <div class="carousel-inner">
-                            <div id="imgId">
-                                @foreach (var image in Model.ImageData)
-                                {
-                                    <div class="pictures">
-                                        <div class="wrap-image">
-                                            <img src="@image.link.ToString()" class="margin" style="border: solid #e2dcdc">
-                                        </div>
-                                    </div>
-                                }
+                <div>
+                    @if (Model != null)
+                    {
+                        <div id="imgId">
+                            <div class="pictures">
+                                <div class="wrap-image">
+                                    @foreach (var image in Model.ImageData)
+                                    {
+                                        <img src="@image.link " alt="..." class="margin" width="250px" height="200px" style="border: solid #e2dcdc">
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="fa fa-angle-right"></span>
-                        </a>
-                    </div>
+                    }
                 </div>
             </div>
         </div>    
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Carousel</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img src="http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap" alt="First slide">
 
-                                    <div class="carousel-caption">
-                                        First Slide
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img src="http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap" alt="Second slide">
-
-                                    <div class="carousel-caption">
-                                        Second Slide
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img src="http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap" alt="Third slide">
-
-                                    <div class="carousel-caption">
-                                        Third Slide
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="fa fa-angle-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="fa fa-angle-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3>
-                h3. Lorem ipsum dolor sit amet.
-            </h3>
-            <div class="card">
-                <h5 class="card-header">
-                    Card title
-                </h5>
-                <div class="card-body">
-                    <p class="card-text">
-                        Card content
-                    </p>
-                </div>
-                <div class="card-footer">
-                    Card footer
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
-        </div>
-        <div class="col-md-4">
-        </div>
-    </div>
 </div>
 <script src="~/Content/ViewImagesData/viewer.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 <script src="js/scripts.js"></script>
 <script>
 
@@ -294,7 +153,6 @@
             url: 'src',
 
         });
-
-
+        
     }
 </script>

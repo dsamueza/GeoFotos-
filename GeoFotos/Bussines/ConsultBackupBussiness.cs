@@ -64,7 +64,7 @@ namespace GeoFotos.Bussines
                     .ToList<ImageData>();
                 ImageTotal _model = new ImageTotal();
                 var sentenciaSQLDatos = $@"SELECT  CORE, id, Code,Ruta,Rutaexiste,TipoNegocio,NombreLocal,Dirección,Fecha,GeoLa,GeoLo,[key] FROM dbo.vw_fotos_total_encuestas_david WHERE id='{uri}'AND [key]='{key}'";
-                var resultProc = tran.Database.SqlQuery<ImageTotal>(sentenciaSQLDatos).ToList();
+                var resultProc = tran.Database.SqlQuery<ImageTotal>(sentenciaSQLDatos).ToList();    
                 _model = resultProc.FirstOrDefault();
                 _model.ImageData = sentenciaSQL;
                 return _model;
