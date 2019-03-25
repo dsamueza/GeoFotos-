@@ -1,32 +1,150 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/assets/css/please-wait.css" rel="stylesheet" />
+    <script src="~/assets/js/please-wait.min.js"></script>
+    <script src="~/assets/js/modernizr.js"></script>
+    <script src="~/assets/js/jquery.js"></script>
+    <!--[if lt IE 9]>
+    <script src="~/assets/js/html5shiv.min.js"></script>
+    <script src="~/assets/js/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
+<!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
+<!-- the fixed layout is not compatible with sidebar-mini -->
+<body class="hold-transition skin-mardis sidebar-collapse sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini pull-left">
+                    <img src="~/Content/imagenes/mardis-logo.jpg" style="width: 40px;"/>
+                </span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img src="~/Content/imagenes/mardis-logo.jpg" style="height: 20px;" />
+                </span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+            </nav>
+        </header>
+        <!-- =============================================== -->
+        <aside class="main-sidebar" style="position: fixed;">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                </ul>
+            </section>
+        </aside>
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    @ViewBag.Title
+                    <small>@ViewBag.Subtitle</small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+            
+                @RenderBody()
 
-    @*<div class="parallax-mirror" style="visibility: visible; z-index: -100; position: fixed; top: -200px; left: 0px; overflow: hidden; transform: translate3d(0px, 0px, 0px);
-    height: 394px; width: 1343px;">
-
-    </div>*@
-
-    @RenderBody()
-
-    @*<header id="masthead" class="site-header" role="banner" data-parallax="scroll" data-speed="0.15" data-image-src="https://wp-themes.com/wp-content/themes/fifteen/assets/images/header.jpg">
-            <div class="layer">
-                <div class="container a">
-                    <div class="site-branding col">
-                        <div id="text-title-desc">
-                            <h1 class="site-title title-font">
-                                <img id="logoMar" src="~/Content/imagenes/mardis-logo.jpg" width="382" height="67" />
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> @ViewContext.Controller.GetType().Assembly.GetName().Version
             </div>
-        </header>*@
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="https://www.mardis.com">MARDIS</a>.</strong>
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/assets/css/skin-blue.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/iCheck/flat/blue.css" rel="stylesheet" />
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/assets/plugins/fastclick/fastclick.min.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/demo.js"></script>
+    <script src="~/assets/js/AdminLTE.js"></script>
+    <script src="~/assets/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('input[type="radio"]')
+                .iCheck({
+                    checkboxClass: 'icheckbox_flat-blue',
+                    radioClass: 'iradio_flat-blue',
+                    increaseArea: '20%' // optional
+                });
+
+            $('input[type="checkbox"]:not(.bootstrap-switch)')
+                .iCheck({
+                    checkboxClass: 'icheckbox_flat-blue',
+                    radioClass: 'iradio_flat-blue',
+                    increaseArea: '20%' // optional
+                });
+        })
+    </script>
+    @RenderSection("scripts", required: false)
+    @{
+        if (ViewBag.Erro != null)
+        {
+            foreach (var m in (List<string>)ViewBag.Erro)
+            {
+                <script>
+                    MsgErro('@m');
+                </script>
+            }
+        }
+
+        if (ViewBag.Ok != null)
+        {
+            foreach (var m in (List<string>)ViewBag.Ok)
+            {
+                <script>
+                    MsgOk('@m');
+                </script>
+            }
+        }
+
+        if (ViewBag.Info != null)
+        {
+            foreach (var m in (List<string>)ViewBag.Info)
+            {
+                <script>
+                    MsgInfo('@m');
+                </script>
+            }
+        }
+
+        if (ViewBag.Alerta != null)
+        {
+            foreach (var m in (List<string>)ViewBag.Alerta)
+            {
+                <script>
+                    MsgAlerta('@m');
+                </script>
+            }
+        }
+
+    }
 </body>
 </html>
