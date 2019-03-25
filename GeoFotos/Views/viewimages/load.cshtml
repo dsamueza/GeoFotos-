@@ -168,42 +168,92 @@
             </div>
         </div>
         <div class="col-md-8">
-                <div class="box box-primary">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Elementos</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+                        </ol>
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="fa fa-angle-left"></span>
+                        </a>
+                        <div class="carousel-inner">
+                            <div id="imgId">
+                                @foreach (var image in Model.ImageData)
+                                {
+                                    <div class="pictures">
+                                        <div class="wrap-image">
+                                            <img src="@image.link.ToString()" class="margin" style="border: solid #e2dcdc">
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="fa fa-angle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="box box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Elementos</h3>
+                        <h3 class="box-title">Carousel</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
                             </ol>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="fa fa-angle-left"></span>
-                            </a>
                             <div class="carousel-inner">
-                                <div id="imgId">
-                                    <div class="pictures">
-                                        <div class="wrap-image">
-                                            @foreach (var image in Model.ImageData)
-                                            {
-                                                <img src="@image.link.ToString()" class="margin" style="border: solid #e2dcdc">
-                                            }
-                                        </div>
+                                <div class="item active">
+                                    <img src="http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap" alt="First slide">
+
+                                    <div class="carousel-caption">
+                                        First Slide
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap" alt="Second slide">
+
+                                    <div class="carousel-caption">
+                                        Second Slide
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap" alt="Third slide">
+
+                                    <div class="carousel-caption">
+                                        Third Slide
                                     </div>
                                 </div>
                             </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="fa fa-angle-left"></span>
+                            </a>
                             <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                                 <span class="fa fa-angle-right"></span>
                             </a>
                         </div>
                     </div>
                     <!-- /.box-body -->
-
+                </div>
+                <!-- /.box -->
             </div>
-        </div>    
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
