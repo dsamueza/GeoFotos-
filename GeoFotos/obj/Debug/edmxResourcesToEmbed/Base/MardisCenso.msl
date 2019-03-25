@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MardisEngine_TestModelStoreContainer" CdmEntityContainer="MardisEngine_TestEntities">
+    <EntitySetMapping Name="backup_images_project">
+      <EntityTypeMapping TypeName="MardisEngine_TestModel.backup_images_project">
+        <MappingFragment StoreEntitySet="backup_images_project">
+          <ScalarProperty Name="id_core" ColumnName="id_core" />
+          <ScalarProperty Name="id_image" ColumnName="id_image" />
+          <ScalarProperty Name="project" ColumnName="project" />
+          <ScalarProperty Name="container" ColumnName="container" />
+          <ScalarProperty Name="ruta_cod" ColumnName="ruta_cod" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="link_azure" ColumnName="link_azure" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DatosMigracionAzure">
+      <EntityTypeMapping TypeName="MardisEngine_TestModel.DatosMigracionAzure">
+        <MappingFragment StoreEntitySet="DatosMigracionAzure">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="project" ColumnName="project" />
+          <ScalarProperty Name="namecore" ColumnName="namecore" />
+          <ScalarProperty Name="container" ColumnName="container" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Config_Parameters_Images_Azure" FunctionName="MardisEngine_TestModel.Store.sp_Config_Parameters_Images_Azure">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MardisEngine_TestModel.sp_Config_Parameters_Images_Azure_Result">
+          <ScalarProperty Name="project" ColumnName="project" />
+          <ScalarProperty Name="namecore" ColumnName="namecore" />
+          <ScalarProperty Name="container" ColumnName="container" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Traerimagen" FunctionName="MardisEngine_TestModel.Store.Traerimagen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MardisEngine_TestModel.Traerimagen_Result">
+          <ScalarProperty Name="id_core" ColumnName="id_core" />
+          <ScalarProperty Name="id_image" ColumnName="id_image" />
+          <ScalarProperty Name="ruta_cod" ColumnName="ruta_cod" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="migrado" ColumnName="migrado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="vw_fotos_mardisp">
+      <EntityTypeMapping TypeName="MardisEngine_TestModel.vw_fotos_mardisp">
+        <MappingFragment StoreEntitySet="vw_fotos_mardisp">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="idimg" ColumnName="idimg" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

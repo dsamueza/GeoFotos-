@@ -1,0 +1,70 @@
+﻿@model GeoFotos.Models.ImageTotal
+
+@{
+    ViewBag.Title = "Mardis";
+    Layout = "~/Views/Shared/_LayoutGeoFotos.cshtml";
+}
+@{
+
+}
+<link href="~/Content/ViewImagesData/viewer.css" rel="stylesheet" />
+<link href="~/Content/ViewImagesData/geoFotos.css" rel="stylesheet" />
+
+
+<body>
+
+    <div id="cueTexto">
+        @if (Model != null)
+        {
+       
+                <div class="section-title">
+                    <span>Nombre del Proyecto: <small> @Model.NombreLocal </small></span>
+                    <span>Codigo: <small> @Model.Code </small></span>
+
+                </div>
+   
+           
+        }
+      
+    </div>
+
+    <div class="mega-container" style="overflow-y: scroll; max-height:500px">
+
+        <div class="site-main">
+            @if (Model != null)
+            {
+                <div id="imgId">
+                    <div class="pictures">
+                        <div class="wrap-image">
+                            @foreach (var image in Model.ImageData)
+                            {
+
+                                <img src="@image.link " alt="..." class="margin" width="300px" height="150px" style="border: solid #e2dcdc">
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="~/Content/ViewImagesData/viewer.js"></script>
+    <script>
+
+        imgvue()
+        function imgvue() {
+            var galley = document.getElementById('imgId');
+            viewer = new Viewer(galley, {
+                url: 'src',
+
+            });
+
+
+        }
+    </script>

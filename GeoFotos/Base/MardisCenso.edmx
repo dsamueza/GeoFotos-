@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MardisEngine_TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="backup_images_project">
+          <Key>
+            <PropertyRef Name="id_core" />
+            <PropertyRef Name="id_image" />
+            <PropertyRef Name="project" />
+          </Key>
+          <Property Name="id_core" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_image" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="project" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="container" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ruta_cod" Type="nvarchar" MaxLength="255" />
+          <Property Name="filename" Type="nvarchar" MaxLength="255" />
+          <Property Name="link_azure" Type="nvarchar" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="origen" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DatosMigracionAzure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="namecore" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="container" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MardisEngine_Test.MardisCommon.vw_fotos_mardisp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_fotos_mardisp">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="idimg" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="key" Type="varchar" MaxLength="33" Nullable="false" />
+          <Property Name="id" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="idimg" Type="nvarchar" MaxLength="110" Nullable="false" />
+          <Property Name="value" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <Function Name="sp_Config_Parameters_Images_Azure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uri" Type="varchar" Mode="In" />
+          <Parameter Name="key" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Traerimagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_core" Type="varchar" Mode="In" />
+          <Parameter Name="container" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MardisEngine_TestModelStoreContainer">
+          <EntitySet Name="backup_images_project" EntityType="Self.backup_images_project" Schema="mardisbackup" store:Type="Tables" />
+          <EntitySet Name="DatosMigracionAzure" EntityType="Self.DatosMigracionAzure" Schema="mardisbackup" store:Type="Tables" />
+          <EntitySet Name="vw_fotos_mardisp" EntityType="Self.vw_fotos_mardisp" store:Type="Views" store:Schema="MardisCommon">
+            <DefiningQuery>SELECT 
+    [vw_fotos_mardisp].[Code] AS [Code], 
+    [vw_fotos_mardisp].[Title] AS [Title], 
+    [vw_fotos_mardisp].[key] AS [key], 
+    [vw_fotos_mardisp].[id] AS [id], 
+    [vw_fotos_mardisp].[idimg] AS [idimg], 
+    [vw_fotos_mardisp].[value] AS [value]
+    FROM [MardisCommon].[vw_fotos_mardisp] AS [vw_fotos_mardisp]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MardisEngine_TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="backup_images_project">
+          <Key>
+            <PropertyRef Name="id_core" />
+            <PropertyRef Name="id_image" />
+            <PropertyRef Name="project" />
+          </Key>
+          <Property Name="id_core" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="project" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="container" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ruta_cod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="link_azure" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="origen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DatosMigracionAzure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="namecore" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="container" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MardisEngine_TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="backup_images_project" EntityType="Self.backup_images_project" />
+          <EntitySet Name="DatosMigracionAzure" EntityType="Self.DatosMigracionAzure" />
+          <FunctionImport Name="sp_Config_Parameters_Images_Azure" ReturnType="Collection(MardisEngine_TestModel.sp_Config_Parameters_Images_Azure_Result)">
+            <Parameter Name="uri" Mode="In" Type="String" />
+            <Parameter Name="key" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Traerimagen" ReturnType="Collection(MardisEngine_TestModel.Traerimagen_Result)">
+            <Parameter Name="id_core" Mode="In" Type="String" />
+            <Parameter Name="container" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="vw_fotos_mardisp" EntityType="MardisEngine_TestModel.vw_fotos_mardisp" />
+        </EntityContainer>
+        <ComplexType Name="sp_Config_Parameters_Images_Azure_Result">
+          <Property Type="String" Name="project" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="namecore" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="container" Nullable="false" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="Traerimagen_Result">
+          <Property Type="String" Name="id_core" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="id_image" Nullable="false" MaxLength="110" />
+          <Property Type="String" Name="ruta_cod" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="value" Nullable="false" />
+          <Property Type="Int32" Name="migrado" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="vw_fotos_mardisp">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="idimg" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="idimg" Type="String" Nullable="false" MaxLength="110" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MardisEngine_TestModelStoreContainer" CdmEntityContainer="MardisEngine_TestEntities">
+          <EntitySetMapping Name="backup_images_project">
+            <EntityTypeMapping TypeName="MardisEngine_TestModel.backup_images_project">
+              <MappingFragment StoreEntitySet="backup_images_project">
+                <ScalarProperty Name="id_core" ColumnName="id_core" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="container" ColumnName="container" />
+                <ScalarProperty Name="ruta_cod" ColumnName="ruta_cod" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="link_azure" ColumnName="link_azure" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosMigracionAzure">
+            <EntityTypeMapping TypeName="MardisEngine_TestModel.DatosMigracionAzure">
+              <MappingFragment StoreEntitySet="DatosMigracionAzure">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="namecore" ColumnName="namecore" />
+                <ScalarProperty Name="container" ColumnName="container" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Config_Parameters_Images_Azure" FunctionName="MardisEngine_TestModel.Store.sp_Config_Parameters_Images_Azure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MardisEngine_TestModel.sp_Config_Parameters_Images_Azure_Result">
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="namecore" ColumnName="namecore" />
+                <ScalarProperty Name="container" ColumnName="container" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Traerimagen" FunctionName="MardisEngine_TestModel.Store.Traerimagen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MardisEngine_TestModel.Traerimagen_Result">
+                <ScalarProperty Name="id_core" ColumnName="id_core" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="ruta_cod" ColumnName="ruta_cod" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="migrado" ColumnName="migrado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="vw_fotos_mardisp">
+            <EntityTypeMapping TypeName="MardisEngine_TestModel.vw_fotos_mardisp">
+              <MappingFragment StoreEntitySet="vw_fotos_mardisp">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="idimg" ColumnName="idimg" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
