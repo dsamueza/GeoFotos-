@@ -13,6 +13,14 @@
     <script src="~/assets/js/html5shiv.min.js"></script>
     <script src="~/assets/js/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .main-footer {
+            background: #2e2e31 !important;
+        }
+        .box.box-primary {
+            border-top-color: #476c86 !important;
+        }
+    </style>
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->
@@ -24,11 +32,11 @@
             <a href="#" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini pull-left">
-                    <img src="~/Content/imagenes/mardis-logo.jpg" style="width: 40px;"/>
+                    <img src="~/Content/imagenes/iso_mardis.png" style="width: 50px;" />>
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
-                    <img src="~/Content/imagenes/mardis-logo.jpg" style="height: 20px;" />
+                    <img src="~/Content/imagenes/iso_mardis.png" style="height: 20px;" />
                 </span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
@@ -41,7 +49,7 @@
         <!-- =============================================== -->
         <!-- =============================================== -->
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper"  style="background:#e2e4ea !important">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
@@ -60,9 +68,9 @@
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> @ViewContext.Controller.GetType().Assembly.GetName().Version
+                <b style="color:white !important">Version  @ViewContext.Controller.GetType().Assembly.GetName().Version </b>
             </div>
-            <strong>Copyright &copy; @DateTime.Now.Year <a href="https://www.mardis.com">MARDIS</a>.</strong>
+            <strong style="color:white !important">Copyright &copy; @DateTime.Now.Year <a href="https://www.mardis.com">MARDIS</a>.</strong>
         </footer>
     </div>
     <!-- ./wrapper -->

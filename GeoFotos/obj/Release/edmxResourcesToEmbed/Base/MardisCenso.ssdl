@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MardisEngine_TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="backup_images_project">
+    <Key>
+      <PropertyRef Name="id_core" />
+      <PropertyRef Name="id_image" />
+      <PropertyRef Name="project" />
+    </Key>
+    <Property Name="id_core" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="id_image" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="project" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="container" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ruta_cod" Type="nvarchar" MaxLength="255" />
+    <Property Name="filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="link_azure" Type="nvarchar" MaxLength="255" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="origen" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="DatosMigracionAzure">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="project" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="namecore" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="container" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MardisEngine_Test.MardisCommon.vw_fotos_mardisp' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_fotos_mardisp">
+    <Key>
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="key" />
+      <PropertyRef Name="id" />
+      <PropertyRef Name="idimg" />
+      <PropertyRef Name="value" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="255" />
+    <Property Name="Title" Type="varchar" MaxLength="31" Nullable="false" />
+    <Property Name="key" Type="varchar" MaxLength="33" Nullable="false" />
+    <Property Name="id" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="idimg" Type="nvarchar" MaxLength="110" Nullable="false" />
+    <Property Name="value" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <Function Name="sp_Config_Parameters_Images_Azure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uri" Type="varchar" Mode="In" />
+    <Parameter Name="key" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Traerimagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_core" Type="varchar" Mode="In" />
+    <Parameter Name="container" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="MardisEngine_TestModelStoreContainer">
+    <EntitySet Name="backup_images_project" EntityType="Self.backup_images_project" Schema="mardisbackup" store:Type="Tables" />
+    <EntitySet Name="DatosMigracionAzure" EntityType="Self.DatosMigracionAzure" Schema="mardisbackup" store:Type="Tables" />
+    <EntitySet Name="vw_fotos_mardisp" EntityType="Self.vw_fotos_mardisp" store:Type="Views" store:Schema="MardisCommon">
+      <DefiningQuery>SELECT 
+    [vw_fotos_mardisp].[Code] AS [Code], 
+    [vw_fotos_mardisp].[Title] AS [Title], 
+    [vw_fotos_mardisp].[key] AS [key], 
+    [vw_fotos_mardisp].[id] AS [id], 
+    [vw_fotos_mardisp].[idimg] AS [idimg], 
+    [vw_fotos_mardisp].[value] AS [value]
+    FROM [MardisCommon].[vw_fotos_mardisp] AS [vw_fotos_mardisp]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

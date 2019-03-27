@@ -455,8 +455,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imagenes\iso_mardis.png" />
     <Content Include="Content\imagenes\login-fondo1.jpg" />
     <Content Include="Content\imagenes\mardis-logo.jpg" />
+    <Content Include="Content\js\MapHelper.js" />
     <Content Include="Content\ViewImagesData\geoFotos.css" />
     <Content Include="Content\ViewImagesData\viewer.css" />
     <Content Include="Content\ViewImagesData\viewer.js" />
@@ -497,6 +499,7 @@
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -529,6 +532,7 @@
     <Content Include="Views\Shared\Profile.cshtml" />
     <Content Include="Views\Shared\Menus.cshtml" />
     <Content Include="Views\Shared\Erro.cshtml" />
+    <Content Include="Views\viewimages\image.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -567,7 +571,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62636</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62636/</IISUrl>
+          <IISUrl>http://localhost:8888/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

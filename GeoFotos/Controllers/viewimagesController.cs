@@ -27,5 +27,21 @@ namespace GeoFotos.Controllers
             }
             return View();
         }
+
+        public ActionResult image(string core, string uri)
+        {
+            ImageTotal _imageTotal = new ImageTotal();
+            if (core != null && uri != null)
+            {
+                if (!core.Equals("") & !uri.Equals(""))
+                {
+                    _imageTotal = _consultBackupBussiness.ImageCore(core, uri);
+
+
+                    return View(_imageTotal);
+                }
+            }
+            return View();
+        }
     }
 }

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MardisEngine_TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="backup_images_project">
+    <Key>
+      <PropertyRef Name="id_core" />
+      <PropertyRef Name="id_image" />
+      <PropertyRef Name="project" />
+    </Key>
+    <Property Name="id_core" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="project" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="container" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ruta_cod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="link_azure" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="origen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DatosMigracionAzure">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="project" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namecore" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="container" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MardisEngine_TestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="backup_images_project" EntityType="Self.backup_images_project" />
+    <EntitySet Name="DatosMigracionAzure" EntityType="Self.DatosMigracionAzure" />
+    <FunctionImport Name="sp_Config_Parameters_Images_Azure" ReturnType="Collection(MardisEngine_TestModel.sp_Config_Parameters_Images_Azure_Result)">
+      <Parameter Name="uri" Mode="In" Type="String" />
+      <Parameter Name="key" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Traerimagen" ReturnType="Collection(MardisEngine_TestModel.Traerimagen_Result)">
+      <Parameter Name="id_core" Mode="In" Type="String" />
+      <Parameter Name="container" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="vw_fotos_mardisp" EntityType="MardisEngine_TestModel.vw_fotos_mardisp" />
+  </EntityContainer>
+  <ComplexType Name="sp_Config_Parameters_Images_Azure_Result">
+    <Property Type="String" Name="project" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="namecore" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="container" Nullable="false" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="Traerimagen_Result">
+    <Property Type="String" Name="id_core" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="id_image" Nullable="false" MaxLength="110" />
+    <Property Type="String" Name="ruta_cod" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="value" Nullable="false" />
+    <Property Type="Int32" Name="migrado" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="vw_fotos_mardisp">
+    <Key>
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="key" />
+      <PropertyRef Name="id" />
+      <PropertyRef Name="idimg" />
+      <PropertyRef Name="value" />
+    </Key>
+    <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+    <Property Name="key" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="false" />
+    <Property Name="id" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="idimg" Type="String" Nullable="false" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

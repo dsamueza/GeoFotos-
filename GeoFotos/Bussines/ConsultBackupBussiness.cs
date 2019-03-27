@@ -27,7 +27,7 @@ namespace GeoFotos.Bussines
 
                 //recuperar
                 _imageData = GetImageData(key, uri);
-                if (_imageData != null)
+                if (_imageData.ImageData.Count==0)
                 {
                     _imageData = MigrationNull(uri, key);
                 }
@@ -50,7 +50,7 @@ namespace GeoFotos.Bussines
         {
             using (var tran = new MardisEngine_TestEntities())
             {
-
+                ImageTotal _model = new ImageTotal();
                 var sentenciaSQL = tran.backup_images_project
                     .Where(h => h.project == key && h.id_core == uri)
                     .Select(x => new ImageData
@@ -62,10 +62,19 @@ namespace GeoFotos.Bussines
                         name = x.name
                     })
                     .ToList<ImageData>();
-                ImageTotal _model = new ImageTotal();
-                var sentenciaSQLDatos = $@"SELECT  CORE, id, Code,Ruta,Rutaexiste,TipoNegocio,NombreLocal,Dirección,Fecha,GeoLa,GeoLo,[key] FROM dbo.vw_fotos_total_encuestas_david WHERE id='{uri}'AND [key]='{key}'";
-                var resultProc = tran.Database.SqlQuery<ImageTotal>(sentenciaSQLDatos).ToList();    
-                _model = resultProc.FirstOrDefault();
+                try
+                {
+                   
+                    var sentenciaSQLDatos = $@"SELECT  CORE, id, Code,Ruta,Rutaexiste,TipoNegocio,NombreLocal,Dirección,Fecha,GeoLa,GeoLo,[key] FROM dbo.vw_fotos_total_encuestas WHERE id='{uri}'AND [key]='{key}'";
+                    var resultProc = tran.Database.SqlQuery<ImageTotal>(sentenciaSQLDatos).ToList();
+                    _model = resultProc.FirstOrDefault();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                 
                 _model.ImageData = sentenciaSQL;
                 return _model;
             }
@@ -90,7 +99,7 @@ namespace GeoFotos.Bussines
                 foreach (ImageTable imageT in imageTable)
                 {
                     var sqlUri = $@"select i._URI as uri 
-                                            from {imageT.schema}.{imageT.name} i inner join  {imageT.schema}.{imageT.core} c on (i._TOP_LEVEL_AURI=c._URI) 
+                                            from {imageT.schema}.[{imageT.name}] i inner join  {imageT.schema}.[{imageT.core}] c on (i._TOP_LEVEL_AURI=c._URI) 
                                             where c._URI='{uri}'";
                     var uries = tran.Database.SqlQuery<string>(sqlUri).ToList();
                     MemoryStream imageStream = null;
@@ -99,7 +108,7 @@ namespace GeoFotos.Bussines
                     foreach (string uriSt in uries)
                     {
                         var sqlCore = $@"select c._URI as id_core,i._URI as id_image,c.RUTA_COD as ruta_cod,i._URI+'.jpg' as [filename],i.VALUE as [value] 
-                            from {imageT.schema}.{imageT.name}  i inner join {imageT.schema}.{imageT.core} c on (i._TOP_LEVEL_AURI=c._URI)  where i._URI = '{uriSt}'";
+                            from {imageT.schema}.[{imageT.name}]  i inner join {imageT.schema}.[{imageT.core}] c on (i._TOP_LEVEL_AURI=c._URI)  where i._URI = '{uriSt}'";
                         var images = tran.Database.SqlQuery<Core>(sqlCore).ToList();
                         foreach (Core image in images)
                         {
@@ -151,7 +160,7 @@ namespace GeoFotos.Bussines
                 List<ImageTable> imageTable = new List<ImageTable>();
 
 
-                var sentenciaSQL = $@"SELECT  CORE, id, Code,Ruta,Rutaexiste,TipoNegocio,NombreLocal,Dirección,Fecha,GeoLa,GeoLo,[key] FROM dbo.vw_fotos_total_encuestas_david WHERE id='{id}'AND [key]='{key}'";
+                var sentenciaSQL = $@"SELECT  CORE, id, Code,Ruta,Rutaexiste,TipoNegocio,NombreLocal,Dirección,Fecha,GeoLa,GeoLo,[key] FROM dbo.vw_fotos_total_encuestas WHERE id='{id}'AND [key]='{key}'";
                 var resultProc = tran.Database.SqlQuery<ImageTotal>(sentenciaSQL).ToList();
 
 
@@ -168,7 +177,7 @@ namespace GeoFotos.Bussines
                 foreach (ImageTable imageT in imageTable)
                 {
                     var sqlUri = $@"select i._URI as uri 
-                                            from {imageT.schema}.{imageT.name} i inner join  {imageT.schema}.{imageT.core} c on (i._TOP_LEVEL_AURI=c._URI) 
+                                            from {imageT.schema}.[{imageT.name}] i inner join  {imageT.schema}.[{imageT.core}] c on (i._TOP_LEVEL_AURI=c._URI) 
                                             where c._URI='{id}'";
                     var uries = tran.Database.SqlQuery<string>(sqlUri).ToList();
 
@@ -176,7 +185,7 @@ namespace GeoFotos.Bussines
                     foreach (string uriSt in uries)
                     {
                         var sqlCore = $@"select i.VALUE as [valueFoto] 
-                            from {imageT.schema}.{imageT.name}  i   where i._URI = '{uriSt}'";
+                            from {imageT.schema}.[{imageT.name}]  i   where i._URI = '{uriSt}'";
                         var images = tran.Database.SqlQuery<ImageData>(sqlCore).ToList();
 
                         DataM.AddRange(images);
@@ -199,6 +208,63 @@ namespace GeoFotos.Bussines
             }
         }
 
+        #endregion
+        #region fotos Core
+
+
+        public ImageTotal ImageCore(string key, string id)
+        {
+            using (var tran = new MardisEngine_TestEntities())
+            {
+
+                List<ImageData> DataM = new List<ImageData>();
+
+
+                List<ImageTable> imageTable = new List<ImageTable>();
+
+
+              
+                    string prefijoCore = key.Replace("CORE", "");
+                    var sqlImageTable = $@"select t.TABLE_SCHEMA as [schema],t.TABLE_NAME as [name] ,'{key}' as core
+                                            from sysobjects so inner join INFORMATION_SCHEMA.TABLES t on(so.name = t.TABLE_NAME)
+                                            where so.type = 'U' and name LIKE '{prefijoCore}%' and name LIKE '%_BLB' and t.TABLE_CATALOG = 'MardisEngine_Test';";
+                    var lects = tran.Database.SqlQuery<ImageTable>(sqlImageTable).ToList();
+                    imageTable.AddRange(lects);
+
+                
+                foreach (ImageTable imageT in imageTable)
+                {
+                    var sqlUri = $@"select i._URI as uri 
+                                            from {imageT.schema}.[{imageT.name}] i inner join  {imageT.schema}.[{key}] c on (i._TOP_LEVEL_AURI=c._URI) 
+                                            where c._URI='{id}'";
+                    var uries = tran.Database.SqlQuery<string>(sqlUri).ToList();
+
+
+                    foreach (string uriSt in uries)
+                    {
+                        var sqlCore = $@"select i.VALUE as [valueFoto]  , c.ruta_cod as Code
+                            from {imageT.schema}.[{imageT.name}]  i   inner join  {imageT.schema}.[{imageT.core}] c on (i._TOP_LEVEL_AURI=c._URI)  where i._URI = '{uriSt}'";
+                        var images = tran.Database.SqlQuery<ImageData>(sqlCore).ToList();
+
+                        DataM.AddRange(images);
+                        DataM.ToList().ForEach(f => f.name = imageT.name.Replace(imageT.core, "").Replace("_BLB", "").Replace("IMG_", "").Replace("_IMG", ""));
+                    }
+
+                }
+
+
+
+
+
+                DataM.ToList().ForEach(f => f.link = String.Format("data:image/gif;base64,{0}", Convert.ToBase64String((byte[])f.valueFoto)));
+
+                ImageTotal ImageTotal = new ImageTotal();
+                 
+                ImageTotal.ImageData = DataM;
+
+                return ImageTotal;
+            }
+        }
         #endregion
         #region ContextImageData
 
