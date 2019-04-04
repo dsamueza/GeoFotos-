@@ -13,8 +13,6 @@ namespace GeoFotos.Controllers
         private ConsultBackupBussiness _consultBackupBussiness = new ConsultBackupBussiness();
         public ActionResult Index()
         {
-
-
             return View();
         }
             public ActionResult load(string key, string uri)
@@ -37,8 +35,7 @@ namespace GeoFotos.Controllers
             }
             catch (Exception e)
             {
-                return RedirectToAction("Index", "StatusError", new { keys = key, uris=uri });
-       
+                return RedirectToAction("Index", "StatusError", new { uris = uri, keys = key });
             }
            
         }
@@ -62,7 +59,6 @@ namespace GeoFotos.Controllers
             }
             catch (Exception)
             {
-
                 return RedirectToAction("Index", "StatusError", new { statusCode = 1 });
             }
            
