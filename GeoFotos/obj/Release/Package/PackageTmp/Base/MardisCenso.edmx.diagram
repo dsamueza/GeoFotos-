@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="55733ffddefe47089731cbeed264ceed" Name="Diagram1">
         <EntityTypeShape EntityType="MardisEngine_TestModel.backup_images_project" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MardisEngine_TestModel.DatosMigracionAzure" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MardisEngine_TestModel.DatosMigracionAzure" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MardisEngine_TestModel.vw_fotos_mardisp" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>

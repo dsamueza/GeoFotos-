@@ -11,37 +11,61 @@ namespace GeoFotos.Controllers
     public class viewimagesController : Controller
     {
         private ConsultBackupBussiness _consultBackupBussiness = new ConsultBackupBussiness();
-
-        public ActionResult load(string key, string uri)
+        public ActionResult Index()
         {
-            ImageTotal _imageTotal = new ImageTotal();
-            if (key != null && uri != null)
-            {
-                if (!key.Equals("") & !uri.Equals(""))
-                {
-                    _imageTotal = _consultBackupBussiness.GetListImageByKeyUri(key, uri);
-                    
-                    
-                    return View(_imageTotal);
-                }
-            }
+
+
             return View();
+        }
+            public ActionResult load(string key, string uri)
+        {
+
+            try
+            {
+                ImageTotal _imageTotal = new ImageTotal();
+                if (key != null && uri != null)
+                {
+                    if (!key.Equals("") & !uri.Equals(""))
+                    {
+                        _imageTotal = _consultBackupBussiness.GetListImageByKeyUri(key, uri);
+
+
+                        return View(_imageTotal);
+                    }
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "StatusError", new { keys = key, uris=uri });
+       
+            }
+           
         }
 
         public ActionResult image(string core, string uri)
         {
-            ImageTotal _imageTotal = new ImageTotal();
-            if (core != null && uri != null)
+            try
             {
-                if (!core.Equals("") & !uri.Equals(""))
+                ImageTotal _imageTotal = new ImageTotal();
+                if (core != null && uri != null)
                 {
-                    _imageTotal = _consultBackupBussiness.ImageCore(core, uri);
+                    if (!core.Equals("") & !uri.Equals(""))
+                    {
+                        _imageTotal = _consultBackupBussiness.ImageCore(core, uri);
 
 
-                    return View(_imageTotal);
+                        return View(_imageTotal);
+                    }
                 }
+                return View();
             }
-            return View();
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "StatusError", new { statusCode = 1 });
+            }
+           
         }
     }
 }

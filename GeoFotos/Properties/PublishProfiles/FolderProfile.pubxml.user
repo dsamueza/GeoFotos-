@@ -781,7 +781,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/25/2019 18:16:33</publishTime>
     </File>
     <File Include="Base/MardisCenso.edmx.diagram">
-      <publishTime>03/25/2019 18:16:32</publishTime>
+      <publishTime>03/29/2019 08:43:15</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>03/25/2019 18:16:38</publishTime>
@@ -859,10 +859,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/25/2019 18:16:55</publishTime>
     </File>
     <File Include="bin/GeoFotos.dll">
-      <publishTime>03/27/2019 10:16:08</publishTime>
+      <publishTime>04/02/2019 15:30:22</publishTime>
     </File>
     <File Include="bin/GeoFotos.pdb">
-      <publishTime>03/27/2019 10:16:08</publishTime>
+      <publishTime>04/02/2019 15:30:22</publishTime>
     </File>
     <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
       <publishTime>03/25/2019 18:16:49</publishTime>
@@ -1266,6 +1266,12 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>03/26/2019 14:10:17</publishTime>
     </File>
+    <File Include="Views/Shared/ErrorPage.cshtml">
+      <publishTime>04/02/2019 13:21:57</publishTime>
+    </File>
+    <File Include="Views/Shared/ErrorPage.html">
+      <publishTime>04/02/2019 13:31:04</publishTime>
+    </File>
     <File Include="Views/Shared/Menus.cshtml">
       <publishTime>03/25/2019 18:16:33</publishTime>
     </File>
@@ -1278,11 +1284,14 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Views/Shared/_LayoutGeoFotos.cshtml">
       <publishTime>03/26/2019 10:21:03</publishTime>
     </File>
+    <File Include="Views/StatusError/Index.cshtml">
+      <publishTime>04/02/2019 15:20:46</publishTime>
+    </File>
     <File Include="Views/viewimages/image.cshtml">
       <publishTime>03/26/2019 10:44:36</publishTime>
     </File>
     <File Include="Views/viewimages/Index.cshtml">
-      <publishTime>03/25/2019 18:16:33</publishTime>
+      <publishTime>04/02/2019 15:30:20</publishTime>
     </File>
     <File Include="Views/viewimages/load.cshtml">
       <publishTime>03/26/2019 09:18:04</publishTime>
@@ -1297,7 +1306,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/25/2019 18:16:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/26/2019 09:20:12</publishTime>
+      <publishTime>04/02/2019 15:30:23</publishTime>
     </File>
   </ItemGroup>
 </Project>
