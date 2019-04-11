@@ -92,7 +92,7 @@ namespace GeoFotos.Bussines
                     string prefijoCore = data.namecore.Replace("CORE", "");
                     var sqlImageTable = $@"select t.TABLE_SCHEMA as [schema],t.TABLE_NAME as [name] ,'{data.namecore}' as core
                                             from sysobjects so inner join INFORMATION_SCHEMA.TABLES t on(so.name = t.TABLE_NAME)
-                                            where so.type = 'U' and name LIKE '{prefijoCore}%' and name LIKE '%_BLB%' and t.TABLE_CATALOG = 'MardisEngine_Test';";
+                                            where so.type = 'U' and name LIKE '{prefijoCore}%' and name LIKE '%_BLB%' and name not like '%_AUDIO_%' and t.TABLE_CATALOG = 'MardisEngine_Test';";
                     var lects = tran.Database.SqlQuery<ImageTable>(sqlImageTable).ToList();
                     imageTable.AddRange(lects);
 
@@ -170,7 +170,7 @@ namespace GeoFotos.Bussines
                     string prefijoCore = data.CORE.Replace("CORE", "");
                     var sqlImageTable = $@"select t.TABLE_SCHEMA as [schema],t.TABLE_NAME as [name] ,'{data.CORE}' as core
                                             from sysobjects so inner join INFORMATION_SCHEMA.TABLES t on(so.name = t.TABLE_NAME)
-                                            where so.type = 'U' and name LIKE '{prefijoCore}%' and name LIKE '%_BLB%' and t.TABLE_CATALOG = 'MardisEngine_Test';";
+                                            where so.type = 'U' and name LIKE '{prefijoCore}%' and name LIKE '%_BLB%' and name not like '%_AUDIO_%' and t.TABLE_CATALOG = 'MardisEngine_Test';";
                     var lects = tran.Database.SqlQuery<ImageTable>(sqlImageTable).ToList();
                     imageTable.AddRange(lects);
 
